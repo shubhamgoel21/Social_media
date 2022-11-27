@@ -1,0 +1,38 @@
+<h1>profile of the user</h1>
+
+<p>detailss</p>
+<img src="<%=user.avatar%>" alt="profile pic not visible" width="40px" height="50px">
+
+<%=user.name%>
+<%=user.email%>
+
+<p><%=locals.user._id%></p>
+<p><%=profile_user_id%></p>
+
+<%if(locals.user._id==profile_user_id) {%>
+<br>
+<br>
+
+
+<br><br>
+<form action="/users/update/<%=user._id%>" method="post" enctype="multipart/form-data">
+
+           <label for="email">Enter email</label>
+           <input type="email" name="email" value="<%=user.email%>" >
+
+           <label for="name">Enter Username</label>
+           <input type="text" name="name" value="<%= user.name%>">
+
+           <label for="password"> enter password</label>
+              <input type="password" name="password" value="<%=user.password%>">
+
+              
+              <input type="file" name="avatar"  placeholder="upload profile picture">
+
+              <input type="submit">
+
+</form>
+
+
+<%}%>
+<a href="/users/home">link to home</a>

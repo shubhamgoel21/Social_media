@@ -1,0 +1,70 @@
+
+<link rel="stylesheet" href="/css/chat_box.css">
+<h1> home page</h1>
+
+<section id="main-content">
+<h1> Posts</h1>
+
+<%if(locals.user){%>
+
+
+           <form action="/post/create" id="post_create_form" method="Post">
+                      <textarea name="content" cols="30" rows="4"></textarea>
+                      <input type="submit">
+           </form>
+           <%}%>
+
+           <% for(p of post){%>
+               <ul id="post_container" class="post-<%=p._id%>">
+                <%- include('_post') -%>
+                      
+               </ul>
+           <%}%>
+
+           
+           
+           <a href="/users/profile">link to profile</a>
+
+
+</section>
+
+<section id="friends">
+
+           <p>Friends</p>
+
+           <% for(u of users){%>
+
+              <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
+              <br>
+                      
+           <%}%>
+
+
+
+</section>
+
+<section id="chat_box">
+
+    <%- include('_chat_box') -%>
+
+</section>
+
+<script src="/js/comments.js"></script>
+<script src="/js/post.js"></script>
+
+
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.min.js" integrity="sha512-GtM/5c/Ie0lStj6QwEG0HkpMQuGr9vrOAgFD4nNmImviyZvsJxN7TYU7b+R7Kthob0zFBUpuxfl3R3Mn1qekTw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/js/chatEngine.js"></script>
+<% if (locals.user){ %>
+<script>
+    new chatEngine('user-chat-box', '<%= locals.user.email %>')
+</script>
+<% } %>
+
+
+
+
+
+
