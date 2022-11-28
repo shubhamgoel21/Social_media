@@ -23,26 +23,34 @@ class PostComment{
                                             url:'/post/comment/create',
                                             data:$(self).serialize(),
                                             success:function(data)
-                       {
-                         console.log("entered in the comments ajax");
-                                  let comment=newCommentDom(data.data.comment);
+                                            {
+alertt("ajax called");
+return;
+                                            },
+                                            
+                      //                       function(3)
+
+
+                      //  {
+                      //    console.log("entered in the comments ajax");
+                      //             let comment=newCommentDom(data.data.comment);
 
                                   
-                                  $(`#commentContainer${postID}`).prepend(comment);
-                                 // console.log("value of post id",comment);
-                                 //  console.log("value inside the comment",data.data.comment.post);
+                      //             $(`#commentContainer${postID}`).prepend(comment);
+                      //            // console.log("value of post id",comment);
+                      //            //  console.log("value inside the comment",data.data.comment.post);
 
 
-                                 new Noty({
-                                            theme: 'relax',
-                                            text: "Comment published!",
-                                            type: 'success',
-                                            layout: 'topRight',
-                                            timeout: 1500
+                      //            new Noty({
+                      //                       theme: 'relax',
+                      //                       text: "Comment published!",
+                      //                       type: 'success',
+                      //                       layout: 'topRight',
+                      //                       timeout: 1500
                                             
-                                        }).show();
+                      //                   }).show();
  
-                       },
+                      //  },
 
                                             error:function(err)
                        {

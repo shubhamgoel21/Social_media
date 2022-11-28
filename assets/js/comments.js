@@ -1,4 +1,4 @@
-class PostComments{
+class PostCommentsg{
     
            constructor(postId){
                this.postId = postId;

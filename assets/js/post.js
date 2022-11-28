@@ -56,7 +56,7 @@
                                  
                                  <small>${p.user.name}</small>
                              
-                                            <form action="/post/comment/create" class="commentCreate" method="Post">
+                                            <form action="/post/comment/create" id="post-${p._id}-comments-form" class="commentCreate" method="Post">
                                                        
                                                        <textarea name="content" cols="30" rows="4"></textarea>
                                                        
@@ -64,7 +64,7 @@
                                                        <input type="submit">
                                             </form>
                                              <div>
-                                            <ul id="commentContainer${p._id}">
+                                            <ul id="commentContainer${p._id}" class="post-${p._id}-comments-form">
                                                 
                                          </ul>
                                  </div>
