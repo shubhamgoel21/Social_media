@@ -12,6 +12,7 @@ const sassMiddleware=require("node-sass-middleware");
 
 const passport=require('passport');
 const passportLocal=require("./config/passport_local");
+const passportJWT=require("./config/passport_jwt");
 const passportGoogle=require('./config/passport-google-oauth2-strategy');
 
 // const chatServer=require('http').Server(app);
