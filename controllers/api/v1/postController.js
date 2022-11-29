@@ -1,5 +1,6 @@
 const Post=require("../../../models/post");
 const Comment=require("../../../models/comments");
+const { post } = require("../../../routes/api/v1/posts");
 
 
 module.exports.index= async function(req,res)
@@ -8,10 +9,13 @@ module.exports.index= async function(req,res)
            .sort('-createdAt')
            .populate('user','name')
            .exec(function(err,posts){
-                      return res.json(200,{
-                                 message:"post from api called",
-                                 post:posts,
-                      })
+                      
+                                 return res.json(200,{
+                                            message:"post from api called",
+                                            post:posts,
+                                 })
+                     
+
              });       
 }
 
@@ -21,6 +25,9 @@ module.exports.delete=async function(req,res)
            try{
                       let ID=req.params.id;
                       let post = await Post.findById(ID);
+                      if(post.user==req.user.id)
+                      {
+                   
 
                       post.remove();
 
@@ -29,6 +36,12 @@ module.exports.delete=async function(req,res)
                       return res.json(200,{
                                  message:"Post and associated comments deleted",
                       })
+           }
+           else{
+                      return res.json(401,{
+                                 message:"you cannout delete the post",
+                      })
+           }
 
            }
            catch(err)
