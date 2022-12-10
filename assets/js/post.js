@@ -7,6 +7,7 @@
            {
             
                       e.preventDefault();
+                   
 
                       $.ajax({
                                  type:'post',
@@ -19,8 +20,8 @@
 
                                             new PostComment(data.data.post._id);
                                             deletepostDom($(' .post_delete_link',post));
-                                          // commentCreate();
-                                            // console.log(shubham);
+                                        
+                                            new PostComment(data.data.post.id);
                                             new Noty({
                                                        theme:'relax',
                                                        text:'Post Published',
@@ -29,7 +30,7 @@
                                                        timeout:1500,
                                                       }).show();
 
-                                            // console.log(data);
+                                      
                                  },
                                  error:function(error)
                                  {
@@ -60,9 +61,10 @@
                                                        
                                                        <textarea name="content" cols="30" rows="4"></textarea>
                                                        
-                                                       <input type="hidden" name="post" value=" ${p._id}" >
+                                                       <input type="hidden" name="post" value="${p._id}" >
                                                        <input type="submit">
                                             </form>
+                                            <div id="post-${p.id}">Likes</div>
                                              <div>
                                             <ul id="commentContainer${p._id}" class="post-${p._id}-comments-form">
                                                 
@@ -86,7 +88,7 @@
                                  url:$(deleteLink).prop('href'),
                                  success:function(data)
                                  {
-                                  console.log("entered here");
+                                  // console.log("entered here");
                                             $(`#post-${data.data.post_id}`).remove();
                                             new Noty({
                                                        theme:'relax',
@@ -112,8 +114,16 @@
 let deleteolderpost=function()
 {
            let posts=$('#post_container>li');
+           
            posts.each(function(i,post)
            {
+            
+            let post_val=post.getAttribute('id');
+           post_val= post_val.substr(5);
+            
+
+            
+              new PostComment(post_val);
               deletepostDom($(' .post_delete_link',post));
 
            })
@@ -121,7 +131,7 @@ let deleteolderpost=function()
 
 
  
- deleteolderpost();
+         deleteolderpost();
           createPost();
 
 }

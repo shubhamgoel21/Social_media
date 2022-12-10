@@ -15,14 +15,14 @@ module.exports.create=async function(req,res)
                       content:req.body.content,
                       user:req.user._id,
                       })
-                      console.log("post that is created->",post);
+                      // console.log("post that is created->",post);
 
                        await Post.findById(post._id)
                       .populate({
                         path:'user'
                       }).exec(function(err,posts)
                       {
-                        console.log("Lets see if our post is populated->",posts);
+                      
                        
                         if(req.xhr)
                         {
@@ -62,16 +62,8 @@ module.exports.destroy=async function(req,res)
   
   Comment.deleteMany({post:id});
   console.log("post user is->",post.user);
-  if(post.user._id==req.user.id)
-  {
-   
-   console.log("enreree here");
- 
-   req.flash("success","post deleted successfully");
-  }
-  else{
-   req.flash("error","error in deleting post");
-  }
+  
+  
  
   if(req.xhr)
   {
@@ -83,6 +75,6 @@ module.exports.destroy=async function(req,res)
     })
   }
 
-  
+  req.flash("success","post deleted successfully");
    return res.redirect('back');
 }

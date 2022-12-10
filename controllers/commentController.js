@@ -15,15 +15,6 @@ module.exports.create=async function(req,res)
  
                            console.log("comment posted is ",comment);
 
-                          // comment=await comment.populate('user',' email').execPopulate();
-                          // commentMailer.newComments(comment);
-
-                          // console.log(comment.id);
-                          
-
-
-
-
                         let post=await Post.findById(req.body.post);
                           
                           post.comment.push(comment);
@@ -39,7 +30,7 @@ module.exports.create=async function(req,res)
                               },
                               message:"comment added successfully",
                             })
-                          }
+                          };
 
                           req.flash("success","comment created successfully");
 
@@ -61,16 +52,27 @@ module.exports.destroy=async function(req,res)
 
   let comment=await Comment.findById(id);
 
-  // console.log(comment);
-  // let postid=comment.post;
+  
+  let postid=comment.post.valueOf();
   // console.log(postid);
 
-//   comment.remove();
+  comment.remove();
 
-//  let post=await Post.findByIdAndUpdate(postid,{$pull: {comment:req.params.id}});
-// //  console.log(post);
+ let post=await Post.findByIdAndUpdate(postid,{$pull: {comment:req.params._id}});
+//  console.log(post);
 
-// req.flash("success","comment deleted successfully");
+
+if(req.xhr)
+{
+  return res.status(200).json({
+    data:{
+      comment_id:req.params.id,
+    },
+    message:"post deleted",
+  })
+}
+
+req.flash("success","comment deleted successfully");
 return res.redirect('back');
 
 

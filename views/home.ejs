@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="/css/chat_box.css">
+<link rel="stylesheet" href="<%= assetPath('css/chat_box.css') %>">
 <h1> home page</h1>
 
 <section id="main-content">
@@ -23,7 +23,7 @@
 
            
            
-           <a href="/users/profile">link to profile</a>
+           <a href="/users/profile/<%=u.id%>">link to profile</a>
 
 
 </section>
@@ -49,8 +49,10 @@
 
 </section>
 
-<script src="/js/comments.js"></script>
+<script src="/js/comments_ajax.js"></script>
 <script src="/js/post.js"></script>
+
+<script src="/js/likes_toggle.js"></script>
 
 
 

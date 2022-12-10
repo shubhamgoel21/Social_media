@@ -219,10 +219,6 @@ module.exports.update=async function(req,res)
                 user.save();
                 req.flash("success","info updated successfully");
                 return res.redirect('back');
-
-
-
-
   })
 }
 

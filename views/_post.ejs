@@ -11,7 +11,7 @@
                       
                       <small><%=p.user.name%></small>
                       <%if(locals.user){%>
-                                 <form action="/post/comment/create" id="post-<%=p._id%>-comments-form"class="commentCreate" method="Post">
+                                 <form action="/post/comment/create" id="post-<%=p._id%>-comments-form" class="commentCreate" method="post">
                                             
                                             <textarea name="content" cols="30" rows="4"></textarea>
                                             
@@ -19,8 +19,11 @@
                                             <input type="submit">
                                  </form>
                       <%}%>
+                      <div id="likes-<%=p.id%>" class="likes"><span id="val">0</span>Likes</div>
+
+
                       <div>
-                                 <ul id="commentContainer<%=p._id%>" class="post-<%=p._id%>-comments-form">
+                                 <ul id="commentContainer<%=p._id%>" class="post-<%=p._id%>">
                                  <%for(comments of p.comment){%>
 
                                             

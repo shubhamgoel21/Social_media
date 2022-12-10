@@ -4,14 +4,16 @@ const GoogleStrategy=require('passport-google-oauth2').Strategy;
 const crypto=require("crypto");
 // const user=require("../models/users");
 const User = require("../models/users");
+const { google_callbackURL } = require("./environment");
 // const res = require("express/lib/response");
+const env=require("./environment");
 
 
 passport.use(new GoogleStrategy({
-           clientID:"519369088145-sdluvom2im3qg6gm10rp1chiqrc2aq63.apps.googleusercontent.com", // Your Credentials here.
-           clientSecret:"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", // Your Credentials here.
-           callbackURL:"http://localhost:8000/users/auth/google/callback",
-           passReqToCallback:true
+  clientID:env.google_clientID, // Your Credentials here.
+  clientSecret:env.google_clientSecret, // Your Credentials here.
+  callbackURL:env.google_callbackURL,
+  passReqToCallback:true
          },
          function(request, accessToken, refreshToken, profile, done) {
           console.log("user created");
